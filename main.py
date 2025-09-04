@@ -12,7 +12,6 @@ if not api_key:
     raise ValueError("PERPLEXITY_API_KEY environment variable is not set.")
 
 
-
 information = """Clearer classification of vehicles and auto parts will cut down disputes, improve compliance, and support growth in Indian automotive manufacturing and exports.
 
 Small cars, two-wheelers ≤350cc: 28% → 18%.
@@ -24,18 +23,16 @@ Given the information {{information}} about tax cut ,If the petrol variant Nexon
 
 # Create prompt and invoke
 summary_prompt_template = PromptTemplate(
-    input_variables=["information"],
-    template = summary_template
+    input_variables=["information"], template=summary_template
 )
 # Initialize Perplexity model
 llm = ChatPerplexity(model="sonar", temperature=0.7, pplx_api_key=api_key)
 
 chain = summary_prompt_template | llm
-response = chain.invoke(input=
-    {"input": information}
-)
+response = chain.invoke(input={"input": information})
 print(response.content)
 
+
 def main():
-  if __name__ == "__main__":
-     main()
+    if __name__ == "__main__":
+        main()
